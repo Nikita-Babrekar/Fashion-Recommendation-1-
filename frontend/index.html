@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitCheck AI | Smart Stylist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff3d00;
+            --accent: #8a2be2;
+            --bg: #0a0a0c;
+            --card-bg: #161618;
+            --text-dim: #8e8e93;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--bg); 
+            color: white; 
+            display: flex; 
+            justify-content: center; 
+            padding: 40px 20px;
+        }
+
+        .container { width: 100%; max-width: 850px; }
+
+        h1 { text-align: center; }
+
+        .card { 
+            background: var(--card-bg); 
+            padding: 30px; 
+            border-radius: 24px; 
+        }
+
+        select, input { 
+            width: 100%; padding: 14px; margin-top: 10px; border-radius: 12px; 
+            background: #232326; color: white;
+        }
+
+        label { margin-top: 20px; display: block; }
+
+        .cta-btn { 
+            background: linear-gradient(135deg, #ff7a18, #ff3d00);
+            padding: 15px; border-radius: 12px; color: white;
+            margin-top: 20px; width: 100%;
+            display: flex; justify-content: center; gap: 10px;
+        }
+
+        #toneBadge {
+            display: none; 
+            margin-top: 20px; 
+            text-align: center;
+        }
+
+        .error-box {
+            display: none;
+            background: rgba(255,0,0,0.1);
+            border: 1px solid red;
+            padding: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>FitCheck AI</h1>
+
+    <div class="card">
+        <label>Mode</label>
+        <select id="mode">
+            <option value="manual">Manual</option>
+            <option value="image">Image</option>
+        </select>
+
+        <div id="manualSection">
+            <label>Skin Tone</label>
+            <select id="skinTone">
+                <option value="fair">Fair</option>
+                <option value="medium">Medium</option>
+                <option value="deep">Deep</option>
+            </select>
+        </div>
+
+        <div id="imageSection" style="display:none;">
+            <input type="file" id="imageInput">
+            <img id="preview" style="display:none; width:100px;">
+        </div>
+
+        <label>Body Shape</label>
+        <select id="bodyShape">
+            <option value="pear">Pear</option>
+            <option value="rectangle">Rectangle</option>
+            <option value="apple">Apple</option>
+            <option value="inverted_triangle">Inverted Triangle</option>
+        </select>
+
+        <button id="generateBtn" class="cta-btn">
+            <span id="btnText">Generate</span>
+            <div id="btnSpinner" style="display:none;">⏳</div>
+        </button>
+
+        <div id="toneBadge">
+            Detected Tone: <span id="detectedToneText"></span>
+        </div>
+
+        <div id="errorBox" class="error-box"></div>
+    </div>
+
+    <div id="results" class="results"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
